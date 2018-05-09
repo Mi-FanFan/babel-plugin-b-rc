@@ -1,4 +1,4 @@
-export default function({type: t}) {
+export default function({types: t}) {
   return {
     visitor: {
       Program: {
@@ -11,15 +11,17 @@ export default function({type: t}) {
       },
       ImportDeclaration(path) {
         let { node } = path;
+        console.log('node', node)
+        console.log('t', t)
         if (node.source.value === 'b-rc' || node.source.value === 'b-rc-m') {
           node.specifiers.forEach(spec => {
             if (t.isImportSpecifier(spec)) {
-              specified[spec.local.name] = spec.imported.name;
+
             } else {
-              ramdas[spec.local.name] = true;
+
             }
           });
-          removablePaths.push(path);
+
         }
       },
     }
