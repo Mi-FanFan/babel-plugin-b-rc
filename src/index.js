@@ -9,14 +9,12 @@ function createImportSource(name, source) {
 }
 
 export default function({types: t}) {
-  let names,
-      removes
-  // console.log(t)
+  let removes
+
   return {
     visitor: {
       Program: {
         enter() {
-          names = []
           removes = []
         },
         exit() {
@@ -30,15 +28,26 @@ export default function({types: t}) {
 
           node.specifiers.forEach(spec => {
             if (t.isImportSpecifier(spec)) {
-              const name = spec.imported.name
-              names.push(name)
+              const name = spec.imported.name,
+                    first = name[0].toLowerCase(),
+                    subPath = [first]
 
-              path.insertBefore( t.importDeclaration([t.clone(spec)], t.stringLiteral(`${value}/lib/${name.toLowerCase()}`)))
+              name.split('').forEach((letter, index) => {
+                if(index > 0) {
+                  if(letter <= 'Z' && letter >= 'A') {
+                    subPath.push('-')
+                    subPath.push(letter.toLowerCase())
+                  }else {
+                    subPath.push(letter.toLowerCase())
+                  }
+                }
+              })
+
+              path.insertBefore( t.importDeclaration([t.clone(spec)], t.stringLiteral(`${value}/lib/${subPath.join('')}`)))
             }
           });
 
           removes.push(path)
-          // console.log('names', names, removes)
         }
       },
     }

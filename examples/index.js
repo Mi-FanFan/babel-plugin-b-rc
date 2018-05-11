@@ -1,7 +1,7 @@
 require('babel-register') 
 
 const code = ` 
-import {Refresh, Button} from 'b-rc-m'
+import {Refresh, DatePicker} from 'b-rc-m'
 var a = 1; var b = 2
 `;
 

@@ -1,10 +1,11 @@
 {
   "name": "babel-plugin-b-rc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A babel plugin work for b-rc and b-rc-m",
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./examples/index.js",
+    "build": "rm -rf lib && babel src --out-dir lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,17 +26,17 @@
   "homepage": "https://github.com/Mi-FanFan/babel-plugin-b-rc#readme",
   "devDependencies": {
     "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-2": "^6.24.1",
     "nodemon": "^1.17.4"
   },
   "dependencies": {
     "babel-generator": "^6.26.1",
-    "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
     "babel-template": "^6.26.0",
     "babel-traverse": "^6.26.0",
-    "babel-types": "^6.26.0",
-    "html-webpack-plugin": "^3.2.0"
+    "babel-types": "^6.26.0"
   }
 }
