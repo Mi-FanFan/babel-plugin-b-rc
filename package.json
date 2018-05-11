@@ -1,12 +1,13 @@
 {
   "name": "babel-plugin-b-rc",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A babel plugin work for b-rc and b-rc-m",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "start": "nodemon ./examples/index.js",
     "build": "rm -rf lib && babel src --out-dir lib",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
