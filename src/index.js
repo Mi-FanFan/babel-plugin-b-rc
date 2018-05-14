@@ -1,6 +1,6 @@
 import generate from 'babel-generator'
 import * as babylon from 'babylon'
-import { addDefault } from "@babel/helper-module-imports";
+import { addSideEffect } from "@babel/helper-module-imports";
 
 function createImportSource(name, source) {
   const code = `import ${name} from "${source}/lib/${name.toLowerCase()}"`
@@ -48,6 +48,7 @@ export default function({types: t}) {
               })
               spec.type = 'ImportDefaultSpecifier'
               path.insertBefore( t.importDeclaration([t.clone(spec)], t.stringLiteral(`${value}/lib/${subPath.join('')}`)))
+              addSideEffect(path, `${value}/lib/${subPath.join('')}/style`);
             }
           });
 
