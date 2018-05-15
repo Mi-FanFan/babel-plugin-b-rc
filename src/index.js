@@ -2,13 +2,6 @@ import generate from 'babel-generator'
 import * as babylon from 'babylon'
 import { addSideEffect } from "@babel/helper-module-imports";
 
-function createImportSource(name, source) {
-  const code = `import ${name} from "${source}/lib/${name.toLowerCase()}"`
-  console.log(babylon.parse(code, {sourceType: 'module'}))
-  return babylon.parse(code, {sourceType: 'module'}).loc
-  // console.log(babylon.parse(code, {sourceType: 'module'}))
-}
-
 export default function({types: t}) {
   let removes,
       specified
@@ -30,8 +23,6 @@ export default function({types: t}) {
             {style} = state.opts,
             value = source.value
             
-        console.log('sate', state.opts)
-
         if (value === 'b-rc' || value === 'b-rc-m') {
 
           specifiers.forEach(spec => {
