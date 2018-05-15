@@ -12,7 +12,7 @@ const ast = babel.transform(code, {
         [
 	        require('../src/index.js').default, 
 	        {
-	            debug: true,
+	            style: true,
 	        },
         ],
     ],

@@ -24,10 +24,13 @@ export default function({types: t}) {
           removes.forEach(path => path.remove())
         }
       },
-      ImportDeclaration(path) {
+      ImportDeclaration(path, state) {
         let { node, hub } = path,
             {type, specifiers, source} = node,
+            {style} = state.opts,
             value = source.value
+            
+        console.log('sate', state.opts)
 
         if (value === 'b-rc' || value === 'b-rc-m') {
 
@@ -45,10 +48,13 @@ export default function({types: t}) {
                     subPath.push(letter.toLowerCase())
                   }
                 }
-              })
+              }) 
+
               spec.type = 'ImportDefaultSpecifier'
-              path.insertBefore( t.importDeclaration([t.clone(spec)], t.stringLiteral(`${value}/lib/${subPath.join('')}`)))
-              addSideEffect(path, `${value}/lib/${subPath.join('')}/style`);
+
+              path.insertBefore( t.importDeclaration([t.clone(spec)], t.stringLiteral(`${value}/lib/${subPath.join('')}`)));
+
+              style && addSideEffect(path, `${value}/lib/${subPath.join('')}/style`);
             }
           });
 

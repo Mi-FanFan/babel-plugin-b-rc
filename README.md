@@ -7,7 +7,9 @@ A babel plugin work for b-rc and b-rc-m in order to support tree-shaking.
 ```
 
 {
-  "plugins": ["b-rc"]
+  "plugins": [
+    ["b-rc", [{style: true}]],  // set the style param will import the style files.
+  ]
 }
 
 
