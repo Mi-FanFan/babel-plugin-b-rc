@@ -28,7 +28,11 @@ to
 
 ```
 
-import Refresh from 'b-rc-m/lib/refresh
+// if style is assigned as true.
+import 'b-rc-m/lib/refresh/style'
+import b-rc-m/lib/data-picker/style'
+
+import Refresh from 'b-rc-m/lib/refresh'
 import DatePicker from 'b-rc-m/lib/date-picker'
 
 ```
